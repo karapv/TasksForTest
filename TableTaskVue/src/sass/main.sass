@@ -1,0 +1,54 @@
+@import vars
+@import fonts
+@import libs
+// Critical css
+::placeholder
+  color: #666
+::selection
+  color: #fff
+input, textarea
+  outline: none
+  &:focus
+    color: #000
+html
+  height: 100%
+*
+  margin: 0
+  padding: 0
+a,button
+  cursor: pointer
+a
+  text-decoration: none
+  color: #000
+a:hover
+  color: $primary-color
+body,#app
+  min-width: 320px
+  max-width: 2560px
+  height: 100%
+  position: relative
+  overflow-x: hidden
+  color: #000
+  background-color: $white
+  @include selectFont('Roboto',400,16px,1.65)
+#app
+  padding: 20px
+h1,h2,h3,h4
+  text-align: center
+img
+  max-width: 100%
+.hidden
+  display: none
+.tableTd
+  input
+    display: none
+.tableTd.active
+  input
+    display: block
+  span
+    display: none
+.error
+  font-size: 12px
+  color: red
+@import "animation.sass"
+@import "media.sass"
