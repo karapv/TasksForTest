@@ -13,5 +13,5 @@ var newUsers = new collection_1.default(newUsersMassive);
 var newUsersView = new users_1.default({ collection: newUsers });
 var newAddUser = new form_1.default({ collection: newUsers });
 document.querySelector('.table').append(newUsersView.render().el);
-document.querySelector('body').append(newAddUser.render().el);
+document.body.append(newAddUser.render().el);
 console.log(newUsers);

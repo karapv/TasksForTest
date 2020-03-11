@@ -11,5 +11,5 @@ const newUsers  = new UsersCollection(newUsersMassive);
 const newUsersView = new UsersView({collection:newUsers});
 const newAddUser = new AddNewUser({collection:newUsers});
 document.querySelector('.table').append(newUsersView.render().el);
-document.querySelector('body').append(newAddUser.render().el);
+document.body.append(newAddUser.render().el);
 console.log(newUsers);
