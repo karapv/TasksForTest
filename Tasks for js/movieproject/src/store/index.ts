@@ -2,18 +2,16 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex);
-const toJSON = (obj)=>{
-  return JSON.stringify(obj);
-};
 export default new Vuex.Store({
   state: {
-    allMovies: [{}],
+    allMovies: null,
     currentMovie: localStorage.currentMovieID?localStorage.currentMovieID:'',
     showPopup: { show: false,error: true, reservCode: null},
-    movieSession: localStorage.movieSession?localStorage.movieSession:[]
+    currentSession: {},
+    allSessions: null
   },
   getters:{
-    getAllMovies: (state): Array<object>=>{
+    getAllMovies: (state)=>{
       return state.allMovies;
     },
     getCurrentMovie: (state): string =>{
@@ -22,8 +20,20 @@ export default new Vuex.Store({
     getPopup: (state): {show: boolean;error: boolean; reservCode: null|number} =>{
       return state.showPopup;
     },
-    getMovieSession: (state) => {
-      return JSON.parse(state.movieSession);
+    getSession:(state)=>{
+       return state.currentSession;
+    },
+    getAllSessions:(state)=>{
+        return state.allSessions;
+    },
+    getMainSessions:(state)=>{
+        const mainSessions = state.allSessions?state.allSessions: [];
+        for(let i = 0;i<mainSessions.length;i++){
+          if(state.allMovies[i]._id == mainSessions[i].movie_id){
+              mainSessions[i].name = state.allMovies[i].name;
+          }
+        }
+        return mainSessions;
     }
   },
   mutations: {
@@ -37,12 +47,11 @@ export default new Vuex.Store({
       const {show,error,reservCode} = isPopup;
       state.showPopup = {show,error,reservCode};
     },
-    setMovieSession(state,movieSession){
-      localStorage.movieSession = toJSON(movieSession);
-      state.movieSession = localStorage.movieSession;
+    setCurrentSession(state,session){
+      state.currentSession = session;
     },
-    chooseMovieSession(state,newObj){
-
+    setSessions(state,sessions){
+      state.allSessions = sessions;
     }
   },
   actions: {
@@ -55,11 +64,11 @@ export default new Vuex.Store({
     togglePopup(content,isPopup: {show: boolean;error: boolean; reservCode: null|number}): void{
       content.commit('togglePopup',isPopup);
     },
-    setMovieSession(content,movieSession){
-      content.commit('setMovieSession',movieSession);
+    setCurrentSession(content,session){
+      content.commit('setCurrentSession',session);
     },
-    chooseMovieSession(content,newObj){
-      content.commit('chooseMovieSession',newObj)
+    setSessions(content,sessions){
+      content.commit('setSessions',sessions);
     }
   }
 })

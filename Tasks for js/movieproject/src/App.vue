@@ -12,8 +12,8 @@
 @import "sass/main"
 </style>
 <script>
-  import Header from "@/components/Header";
-  import Popup from "@/components/Popup";
+  import Header from "@/components/header/Header";
+  import Popup from "@/components/popup/Popup";
   export default {
     components: {Popup, Header}
   }

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Movie from '../views/Movie'
+import Home from '../views/home/Home.vue'
+import Movie from '../views/movie/Movie.vue'
 Vue.use(VueRouter)
 
 const routes = [
