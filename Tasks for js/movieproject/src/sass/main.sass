@@ -1,0 +1,93 @@
+@import vars
+@import fonts
+@import libs
+// Critical css
+::placeholder
+  color: #666
+::selection
+  color: #fff
+input, textarea
+  outline: none
+  &:focus
+    color: #000
+html
+  height: 100%
+*
+  margin: 0
+  padding: 0
+a,button
+  cursor: pointer
+a
+  text-decoration: none
+  color: #000
+a:hover
+  color: $primary-color
+h1,h2
+  text-align: center
+  margin: 30px 0
+body,#app
+  min-width: 320px
+  max-width: 2560px
+  height: 100%
+  position: relative
+  overflow-x: hidden
+  color: #000
+  background-color: $white
+  @include selectFont('Roboto',400,16px,1.65)
+img
+  max-width: 100%
+.hidden
+  display: none
+//Main page
+.list-movies-item
+  cursor: pointer
+  margin-bottom: 20px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  @include list-type-none
+  img
+    height: 320px
+    width: 100%
+    object-fit: cover
+    margin: 0 auto
+    display: block
+.movies-item-title
+  text-transform: uppercase
+  margin-top: 10px
+.movies-item-release
+  font-size: 14px
+//Movie page
+.movie-img
+  width: 320px
+  margin: 0 auto 10px auto
+  img
+    object-fit: cover
+.sessions-row
+  display: flex
+  justify-content: space-between
+.sessions-place
+  width: calc(100%/10)
+  border: 1px solid #000
+  height: 50px
+  text-align: center
+  line-height: 50px
+  color: #fff
+  cursor: pointer
+.sessions-place.isFree
+  background-color: #66dc0c
+.sessions-place.isBusy
+  background-color: #f15222
+.info-text
+  margin: 10px 0
+  &:last-of-type
+    text-align: right
+//Popup
+.modal
+  transition: all 1s ease-in-out
+.modal.fade
+  display: none
+.modal.fade.show
+  display: block
+@import "animation.sass"
+@import "media.sass"
