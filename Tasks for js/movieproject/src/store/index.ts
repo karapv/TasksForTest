@@ -4,11 +4,11 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    allMovies: null,
+    allMovies: {},
     currentMovie: localStorage.currentMovieID?localStorage.currentMovieID:'',
     showPopup: { show: false,error: true, reservCode: null},
     currentSession: {},
-    allSessions: null
+    allSessions: {}
   },
   getters:{
     getAllMovies: (state)=>{
@@ -47,10 +47,10 @@ export default new Vuex.Store({
       const {show,error,reservCode} = isPopup;
       state.showPopup = {show,error,reservCode};
     },
-    setCurrentSession(state,session){
+    setCurrentSession(state,session: Array<object>): void{
       state.currentSession = session;
     },
-    setSessions(state,sessions){
+    setSessions(state,sessions: Array<object>): void{
       state.allSessions = sessions;
     }
   },
@@ -64,10 +64,10 @@ export default new Vuex.Store({
     togglePopup(content,isPopup: {show: boolean;error: boolean; reservCode: null|number}): void{
       content.commit('togglePopup',isPopup);
     },
-    setCurrentSession(content,session){
+    setCurrentSession(content,session: Array<object>): void{
       content.commit('setCurrentSession',session);
     },
-    setSessions(content,sessions){
+    setSessions(content,sessions: Array<object>): void{
       content.commit('setSessions',sessions);
     }
   }

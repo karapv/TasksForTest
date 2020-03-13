@@ -1,26 +1,27 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Кинотеатр</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="/">Кинотеатр</a>
+        <form class="form-inline" @submit.prevent="searchMovie(movie)">
+            <input class="form-control mr-sm-3" type="search" v-model="movie" placeholder="Название фильма" aria-label="Search" required>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Искать</button>
+        </form>
+    </nav>
 </template>
 
 <script lang="ts">
+import router from "@/router";
 export default {
   name: "Header",
   data(){
     return{
-
+       movie: ''
     }
+  },
+  methods:{
+      searchMovie(movie: string): void{
+          router.push({  name: 'Search', query: { find: movie } });
+          location.reload()
+      }
   }
 }
 </script>
